@@ -7,6 +7,7 @@
 
     <ItemGroup>
         <Compile Include="List.fs" />
+        <Compile Include="FoldImpl.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 

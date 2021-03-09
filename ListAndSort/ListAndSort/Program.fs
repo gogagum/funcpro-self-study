@@ -1,6 +1,21 @@
-﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
+﻿///-----------------------------------------------------------------------------
+/// "Choose min" sort (from lec)
 
-open System
+let rec fMin = function
+   | [] -> failwith "No minimum element."
+   | [x] -> (x, [])
+   | head::tail ->
+      let (min, z) = fMin tail
+      if min < head then (min, head::z)
+      else (head, tail)
+
+let rec sort = function
+   | [] -> []
+   | x -> let(min, t) = fMin x
+          min::(sort t)
+
+///-----------------------------------------------------------------------------
+/// Quicksort
 
 let rec splitByBorder (l : 'a list, border : 'a) =
    match l with
@@ -24,5 +39,6 @@ let main argv =
     printfn "%i" (test_list.Length) 
     printfn "%A" test_list
     printfn "%A" (quickSort test_list)
+    printfn "%A" (sort test_list)
     0
     
