@@ -1,13 +1,14 @@
 ﻿///-----------------------------------------------------------------------------
 /// "Choose min" sort (from lec)
 
-let rec fMin = function
-   | [] -> failwith "No minimum element."
-   | [x] -> (x, [])
-   | head::tail ->
-      let (min, z) = fMin tail
-      if min < head then (min, head::z)
-      else (head, tail)
+let rec fMin l =
+   match l with
+      | [] -> failwith "No minimum element."
+      | [x] -> (x, [])
+      | head::tail ->
+         let (min, z) = fMin tail
+         if min < head then (min, head::z)
+         else (head, tail)
 
 let rec sort = function
    | [] -> []
@@ -65,12 +66,12 @@ let rev L =
 // Main
 [<EntryPoint>]
 let main argv =
-    let test_list = [1; 10; 2; 9; 3; 8; 4; 7; 5; 6]
-    printfn "%i" (test_list.Length) 
-    printfn "%A" test_list
-    printfn "%A" (quickSort test_list)
-    printfn "%A" (sort test_list)
-    printfn "%A" (betterQuickSort test_list)
+    let testList = [1; 10; 2; 9; 3; 8; 4; 7; 5; 6]
+    printfn "%i" (testList.Length) 
+    printfn "%A" testList
+    printfn "%A" (quickSort testList)
+    printfn "%A" (sort testList)
+    printfn "%A" (betterQuickSort testList)
     
     // Concat method sample
     let listOfLists = [[1; 2]; [3; 4]; [5; 6]]
@@ -81,6 +82,12 @@ let main argv =
 
     let toReverse = [1; 2; 3; 4; 5; 6]
     printfn "%A" (rev toReverse)
+        
+    let leftFoldSum = FoldImpl.foldl (+) 0 testList
+    let rightFoldSum = FoldImpl.foldr (+) 0 testList
+        
+    printfn "leftFoldSum: %i" leftFoldSum
+    printfn "rightFoldSum: %i" rightFoldSum
         
     0
     

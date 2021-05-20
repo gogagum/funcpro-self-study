@@ -1,4 +1,4 @@
-module ListAndSort.List
+module List
 
 /// list analog 
 type 'a List =
